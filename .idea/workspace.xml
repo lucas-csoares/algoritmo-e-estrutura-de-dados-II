@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1886dbd1-1b06-41d5-a1da-41f89fc32a9c" name="Changes" comment="" />
+    <list default="true" id="1886dbd1-1b06-41d5-a1da-41f89fc32a9c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/POO/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +41,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "20",
@@ -55,6 +58,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="L:\repositories\algoritmo-e-estrutura-de-dados-II\POO" />
       <recent name="L:\repositories\algoritmo-e-estrutura-de-dados-II\in-out" />
     </key>
   </component>
@@ -66,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1695322316397</updated>
-      <workItem from="1695322317448" duration="1715000" />
+      <workItem from="1695322317448" duration="2204000" />
     </task>
     <servers />
   </component>
