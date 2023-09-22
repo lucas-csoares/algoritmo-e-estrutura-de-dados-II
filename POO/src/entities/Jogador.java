@@ -82,7 +82,7 @@ public class Jogador {
 
     public static void imprimir(Jogador jogador) {
         System.out.print("[" + jogador.getId() + " ## ");
-        System.out.print((jogador.getNome() == "" ? "nao informado" : jogador.getNome()) + " ## ");
+        System.out.print((Objects.equals(jogador.getNome(),"") ? "nao informado" : jogador.getNome()) + " ## ");
         System.out.print((jogador.getAltura() == 0 ? "nao informado" : jogador.getAltura()) + " ## ");
         System.out.print((jogador.getPeso() == 0 ? "nao informado" : jogador.getPeso()) + " ## ");
         System.out.print((jogador.getAnoNascimento() == 0 ? "nao informado" : jogador.getAnoNascimento()) + " ## ");
