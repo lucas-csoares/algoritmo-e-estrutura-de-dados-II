@@ -24,4 +24,4 @@ próprios  clubes  fora  da  sede principal  na  Olympic  Tower, localizada na Q
 Esse semestre, você precisará ler, organizar e armazenar os dados de jogadores  da  liga  de  basquete norte-americana – NBA – extraídos
 do
 site
-https://www.kaggle.com/drgilermo/ nba-players-stats.  Nossa base contém  registros  de  jogadores desde  1950, um  total  de  67 temporadas  da  NBA.  O arquivo original sofreu algumas adaptações para  ser  utilizado  neste  e  nos próximos  trabalhos  práticos da disciplina.
+https://www.kaggle.com/drgilermo/nba-players-stats.  Nossa base contém  registros  de  jogadores desde  1950, um  total  de  67 temporadas  da  NBA.  O arquivo original sofreu algumas adaptações para  ser  utilizado  neste  e  nos próximos  trabalhos  práticos da disciplina.
