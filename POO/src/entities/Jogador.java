@@ -3,6 +3,7 @@ package entities;
 import java.util.Objects;
 import java.util.Scanner;
 
+
 public class Jogador {
     private int id;
     private String nome;
@@ -32,67 +33,79 @@ public class Jogador {
 
     }*/
 
+    public static Boolean checkEmpty(String[] playerData, int index) {
+
+        return playerData.length > index && !Objects.equals(playerData[index],"");
+    }
+
+
 
     public static void ler() {
         Scanner sc = new Scanner(System.in);
-        int tamanhoArray = 10;
-        Jogador[] jogadores = new Jogador[tamanhoArray];
-        int i = 0;
+        int vectorSize = 10;
+        Jogador[] players = new Jogador[vectorSize];
+        int countPlayers = 0;
 
         String linha = sc.nextLine();
-        while(sc.hasNextLine() && !linha.equals("FIM")) {
-            String[] palavras = linha.split(",");
-            if(i >= tamanhoArray) {
-                tamanhoArray *= 2;
-                Jogador[] novoArray = new Jogador[tamanhoArray];
-                System.arraycopy(jogadores, 0, novoArray, 0, jogadores.length);
-                jogadores = novoArray;
+        while(!linha.equals("FIM")) {
+            if(countPlayers >= vectorSize) {
+                vectorSize *= 2;
+                Jogador[] newVector = new Jogador[vectorSize];
+                System.arraycopy(players, 0, newVector, 0, players.length);
+                players = newVector;
             }
             Jogador jogador = new Jogador();
-            jogadores[i] = jogador;
+            players[countPlayers] = jogador;
 
-            jogador.setId(palavras.length > 0 && !palavras[0].isEmpty() ? Integer.parseInt(palavras[0]) : 0);
-            jogador.setNome(palavras.length > 1 ? palavras[1] : "");
-            jogador.setAltura(palavras.length > 2 && !palavras[2].isEmpty() ? Integer.parseInt(palavras[2]) : 0);
-            jogador.setPeso(palavras.length > 3 && !palavras[3].isEmpty() ? Integer.parseInt(palavras[3]) : 0);
-            jogador.setUniversidade(palavras.length > 4 ? palavras[4] : "");
-            jogador.setAnoNascimento(palavras.length > 5 && !palavras[5].isEmpty() ? Integer.parseInt(palavras[5]) : 0);
-            jogador.setCidadeNascimento(palavras.length > 6 ? palavras[6] : "");
-            jogador.setEstado(palavras.length > 7 ? palavras[7] : "");
-            i++;
+            String[] playerData = linha.split(",");
+            int indexPlayer = 0;
+
+
+            jogador.setId(playerData.length > indexPlayer ? Integer.parseInt(playerData[0]) : 0);
+            jogador.setNome(checkEmpty(playerData,++indexPlayer) ? playerData[indexPlayer] : "nao informado");
+            jogador.setAltura(playerData.length > ++indexPlayer ? Integer.parseInt(playerData[indexPlayer]) : 0);
+            jogador.setPeso(playerData.length > ++indexPlayer ? Integer.parseInt(playerData[indexPlayer]) : 0);
+            jogador.setUniversidade(checkEmpty(playerData,++indexPlayer) ? playerData[indexPlayer] : "nao informado");
+            jogador.setAnoNascimento(playerData.length > ++indexPlayer ? Integer.parseInt(playerData[indexPlayer]) : 0);
+            jogador.setCidadeNascimento(checkEmpty(playerData,++indexPlayer) ? playerData[indexPlayer] : "nao informado");
+            jogador.setEstado(checkEmpty(playerData,++indexPlayer) ? playerData[indexPlayer] : "nao " +
+                    "informado");
+
+            countPlayers++;
             linha = sc.nextLine();
         }
-        linha = sc.nextLine();
-        int qtdLinhas = Integer.parseInt(linha);
-        for (int j = 0; j < qtdLinhas; j++) {
-            linha = sc.nextLine();
-            int w = 0;
-            while (w < jogadores.length && (jogadores[w] == null || Integer.parseInt(linha) != jogadores[w].getId())) {
-                w++;
+
+        int qtdLinhas = Integer.parseInt(sc.nextLine());
+        for (int i = 0; i < qtdLinhas; i++) {
+            String idSearch = sc.nextLine();
+            boolean found = false;
+            int j = 0;
+            while(!found && j < countPlayers) {
+                Integer idPlayer = Integer.valueOf(players[j].getId());
+
+                if(idPlayer.equals(Integer.parseInt(idSearch))) {
+                    imprimir(players[j]);
+                    found = true;
+                }
+                j++;
             }
-            if (w < jogadores.length && jogadores[w] != null) {
-                imprimir(jogadores[w]);
-            } else {
-                System.out.println("Jogador não encontrado para o ID informado");
-            }
+
         }
 
         sc.close();
     }
 
+
     public static void imprimir(Jogador jogador) {
-        System.out.print("[" + jogador.getId() + " ## ");
-        System.out.print((Objects.equals(jogador.getNome(),"") ? "nao informado" : jogador.getNome()) + " ## ");
+
+        System.out.print("[" + (jogador.getId() == 0 ? "nao informado" : jogador.getId()) + " ## ");
+        System.out.print(jogador.getNome() + " ## ");
         System.out.print((jogador.getAltura() == 0 ? "nao informado" : jogador.getAltura()) + " ## ");
         System.out.print((jogador.getPeso() == 0 ? "nao informado" : jogador.getPeso()) + " ## ");
         System.out.print((jogador.getAnoNascimento() == 0 ? "nao informado" : jogador.getAnoNascimento()) + " ## ");
-        System.out.print((Objects.equals(jogador.getUniversidade(), "") ? "nao informado" : jogador.getUniversidade()) + " ## ");
-        System.out.print((Objects.equals(jogador.getCidadeNascimento(), "") ? "nao informado" :
-                jogador.getCidadeNascimento()) + " " +
-                "## ");
-        System.out.print((Objects.equals(jogador.getEstado(), "") ? "nao informado" :
-                jogador.getEstado()) +
-                "]");
+        System.out.print(jogador.getUniversidade() + " ## ");
+        System.out.print(jogador.getCidadeNascimento() + " ## ");
+        System.out.print(jogador.getEstado() + "]");
         System.out.println();
     }
 
