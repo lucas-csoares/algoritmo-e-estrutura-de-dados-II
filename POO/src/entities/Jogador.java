@@ -33,10 +33,36 @@ public class Jogador {
 
     }*/
 
-    public static Boolean checkEmpty(String[] playerData, int index) {
+  /*  public static Boolean checkEmpty(String[] playerData, int index) {
 
         return playerData.length > index && !Objects.equals(playerData[index],"");
+    }*/
+
+
+
+    public static String conversorIntForString (int playerData) {
+        if(playerData == 0)
+            return "nao informado";
+        else
+            return Integer.toString(playerData);
     }
+
+    public static int checkEmptyForint(String[] players, int index) {
+        if (players.length > index && !Objects.equals(players[index],""))
+            return Integer.parseInt(players[index]);
+        else
+            return 0;
+
+    }
+
+    public static String checkEmptyforString (String[] players, int index) {
+        if (players.length > index && !Objects.equals(players[index],""))
+            return players[index];
+        else
+            return "nao informado";
+    }
+
+
 
 
 
@@ -61,15 +87,14 @@ public class Jogador {
             int indexPlayer = 0;
 
 
-            jogador.setId(playerData.length > indexPlayer ? Integer.parseInt(playerData[0]) : 0);
-            jogador.setNome(checkEmpty(playerData,++indexPlayer) ? playerData[indexPlayer] : "nao informado");
-            jogador.setAltura(playerData.length > ++indexPlayer ? Integer.parseInt(playerData[indexPlayer]) : 0);
-            jogador.setPeso(playerData.length > ++indexPlayer ? Integer.parseInt(playerData[indexPlayer]) : 0);
-            jogador.setUniversidade(checkEmpty(playerData,++indexPlayer) ? playerData[indexPlayer] : "nao informado");
-            jogador.setAnoNascimento(playerData.length > ++indexPlayer ? Integer.parseInt(playerData[indexPlayer]) : 0);
-            jogador.setCidadeNascimento(checkEmpty(playerData,++indexPlayer) ? playerData[indexPlayer] : "nao informado");
-            jogador.setEstado(checkEmpty(playerData,++indexPlayer) ? playerData[indexPlayer] : "nao " +
-                    "informado");
+            jogador.setId(checkEmptyForint(playerData, indexPlayer));
+            jogador.setNome(checkEmptyforString(playerData,++indexPlayer));
+            jogador.setAltura(checkEmptyForint(playerData, ++indexPlayer));
+            jogador.setPeso(checkEmptyForint(playerData, ++indexPlayer));
+            jogador.setUniversidade(checkEmptyforString(playerData,++indexPlayer));
+            jogador.setAnoNascimento(checkEmptyForint(playerData, ++indexPlayer));
+            jogador.setCidadeNascimento(checkEmptyforString(playerData,++indexPlayer));
+            jogador.setEstado(checkEmptyforString(playerData,++indexPlayer));
 
             countPlayers++;
             linha = sc.nextLine();
@@ -80,7 +105,7 @@ public class Jogador {
             String idSearch = sc.nextLine();
             boolean found = false;
             int j = 0;
-            while(!found && j < countPlayers) {
+            while(!found) {
                 Integer idPlayer = Integer.valueOf(players[j].getId());
 
                 if(idPlayer.equals(Integer.parseInt(idSearch))) {
@@ -97,16 +122,16 @@ public class Jogador {
 
 
     public static void imprimir(Jogador jogador) {
-
-        System.out.print("[" + (jogador.getId() == 0 ? "nao informado" : jogador.getId()) + " ## ");
-        System.out.print(jogador.getNome() + " ## ");
-        System.out.print((jogador.getAltura() == 0 ? "nao informado" : jogador.getAltura()) + " ## ");
-        System.out.print((jogador.getPeso() == 0 ? "nao informado" : jogador.getPeso()) + " ## ");
-        System.out.print((jogador.getAnoNascimento() == 0 ? "nao informado" : jogador.getAnoNascimento()) + " ## ");
-        System.out.print(jogador.getUniversidade() + " ## ");
-        System.out.print(jogador.getCidadeNascimento() + " ## ");
-        System.out.print(jogador.getEstado() + "]");
-        System.out.println();
+        System.out.printf("[%s ## %s ## %s ## %s ## %s ## %s ## %s ## %s]\n",
+                conversorIntForString(jogador.getId()),
+                jogador.getNome(),
+                conversorIntForString(jogador.getAltura()),
+                conversorIntForString(jogador.getPeso()),
+                conversorIntForString(jogador.getAnoNascimento()),
+                jogador.getUniversidade(),
+                jogador.getCidadeNascimento(),
+                jogador.getEstado()
+                );
     }
 
 
